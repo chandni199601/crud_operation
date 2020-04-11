@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chandni project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="col-md-offset-3 col-md-6" align="center">
+    <div class="page-header">
+        <h1><a href="{% url 'home' %}" class="top-menu" >Companies List</a></h1>
+    </div>
+    <a href="/org/" class="top-menu"><span class="glyphicon glyphicon-pluc"></span>add new Pic</a><br>
+    <ul>
+        {% for obj in orglist %}
+        <a href="{{ obj.get_absolute_url }}"><h3>{{obj.id}}.{{obj.company_name}} </h3>
+        {% if obj.company_logo %}<img src="{{obj.company_logo.url}}" height="300px" width="400"/>
+            {% endif %}</a><br>
+        <a href="{% url 'update' id=obj.id %}">Update</a>
+         {% endfor %}
+    </ul>
+    </div>
+</div>
+</body>
+</html>
